@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+.it_cut_list {}
+.it_cut_list table {}
+.it_cut_list table tr th {
+    background-color: #ffffff;
+    text-align: center;
+}
+.it_cut_list table tr th,
+.it_cut_list table tr td:first-child,
+.it_cut_list table tr td {
+    font-size: 0.95em;
+    border: 1px solid #d5d5d5;
+}
+.it_cut_list table tr td {
+    background-color: #F2F2F2;
+    text-align: right;
+}

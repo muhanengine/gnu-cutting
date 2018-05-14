@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+/* 상품보기 추가옵션 테이블 */
+table.shop_table.tb_cut_cutting.cutting_options {
+    width: 100%;
+    display: table !important;
+}
+
+/* 장바구니 옵션 보기 */
+.it_cut_list table {
+    width: 90%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+.it_cut_list table tr th {
+    padding: 10px 0;
+    border: 1px solid #d5d5d5;
+    text-align: center;
+}
+.it_cut_list table tr td {
+    padding: 15px 5px;
+    border: 1px solid #d5d5d5;
+    line-height: 1.5em;
+    word-break: break-all;
+    text-align: right;
+    background-color: #F2F2F2;
+}
+div.opt_count {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -15px;
+}
+#mod_option_frm  #sit_sel_option ul {
+    background: #ffffff;
+}
+
+/* 모바일 상품 */
+#sit_ov .sit_option_wr {
+    margin: 10px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+}
+#sit_ov .sit_option_wr h3 {
+    display: block;
+    padding: 15px;
+    font-size: 1.5em;
+    line-height: 1.3em;
+    margin: 0;
+}
+#sit_ov .sit_option_wr .get_item_options {
+    border-top: 1px solid #e6e6e6;
+    padding: 10px;
+    color: #777;
+}
+#sit_ov .sit_option_wr .get_item_options label {
+    display: block;
+    margin: 0 0 5px 10px;
+}
+#sit_ov .sit_option_wr .get_item_options select {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #d9d9d9;
+    margin: 0 0 5px;
+}

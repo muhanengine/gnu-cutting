@@ -1,0 +1,140 @@
+@charset "utf-8";
+/* //__재단__// */
+#sit_cut_cutting {
+	position: relative;
+	background-color: #FBFBFB;
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid #E4E4E4;
+}
+#sit_cut_cutting h3 {position:absolute;font-size:0;line-height:0;overflow:hidden}
+#sit_cut_cutting table.shop_table {}
+#sit_cut_cutting table.shop_table tr {line-height: 20px;}
+#sit_cut_cutting table.shop_table tr th {}
+#sit_cut_cutting table.shop_table tr th.add-cutting { cursor:pointer; width:40px; text-align:center; }
+#sit_cut_cutting table.shop_table tr td input {
+	width:90%; 
+	display: inline-block;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	transition: border linear 0.2s, box-shadow linear 0.2s;
+	height: 25px;
+	padding: 4px 6px;
+	margin-bottom: 10px;
+	font-size: 1em;
+	line-height: 1.2em;
+}
+#sit_cut_cutting table.shop_table tr td input.cutting-board {
+	width: 42%;
+}
+#sit_cut_cutting table.shop_table tr td span.delete-cutting { display:block; cursor:pointer; width:40px; text-align:center; }
+#sit_cut_cutting .btn_add01 {
+	position: absolute;
+	right: 3px;
+	bottom: 3px;
+}
+#sit_cut_cutting .btn_add01 a {
+	display: inline-block;
+	padding: 7px 10px;
+	border: 2px solid #fff;
+	background: #5BA9FF;
+	text-decoration: none;
+	cursor: pointer;
+	color: #fff;
+}
+.cutting_options {
+	margin-top: 5px;
+}
+
+.list-cutting {
+	margin:10px;
+}
+.list-cutting table.cutting_table {width:100%;}
+.list-cutting table.cutting_table tr {}
+.list-cutting table.cutting_table tr th {}
+.list-cutting table.cutting_table tr td {}
+.list-cutting table.cutting_table tr td input { width:90%; }
+.list-cutting ul#sit_opt_added {
+    border: 1px solid #e9e9e9;
+}
+#sit_sel_option ul#sit_opt_added li.sit_opt_list {
+    padding-right: 0;
+}
+.list-cutting ul#sit_opt_added li.sit_opt_list {
+    padding: 10px 20px;
+    border-bottom: 1px solid #e9e9e9;
+}
+.list-cutting ul#sit_opt_added li.sit_opt_list div {
+    margin: 5px 0 0;
+    text-align: right;
+    position: relative;
+    height: 25px;
+}
+.list-cutting ul#sit_opt_added li.sit_opt_list div button.sit_opt_delete {
+    margin: 0 0 0 1px;
+    display: inline-block;
+    padding: 0 5px;
+    height: 24px;
+    border: 0;
+    background: #333;
+    color: #fff;
+    letter-spacing: -0.1em;
+    text-decoration: none;
+    vertical-align: middle;
+    position: absolute;
+    right: 0;
+}
+.list-cutting ul#sit_opt_added li.sit_opt_list div span {
+    position:absolute;
+    left:0;
+}
+
+.input_readonly {background-color:#FCFCFC !important; border:1px solid #F0F0F0 !important; padding-left: 5px; margin: 3px 0;}
+
+.title-name {color:#969696;}
+
+.mobile-input { border:1px solid #F0F0F0 !important; padding:3px 0;}
+
+.mobile-btn_add01 {display: inline-block;}
+.mobile-button-cutting {
+	display: inline-block;
+	padding: 7px 10px;
+	border: 2px solid #F6F9FE;
+	background: #5BA9FF;
+	text-decoration: none;
+	cursor: pointer;
+	color: #fff !important;
+}
+.mobile-cutting_options {color:#C0C0C0;}
+.mobile-sit_opt_qty {width:300px;display: inline-block;}
+.mobile-sit_cut_cutting {
+	background-color: #FBFBFB;
+	padding: 10px;
+	border: 1px solid #E4E4E4;
+	margin-bottom:10px;
+}
+
+/* 재단컷팅 목록 */
+.cutting_table input {height:1.8em;}
+
+/* 장바구니 옵션 보기 */
+button.view_options {
+	padding: 0 7px;
+	border: 1px solid #6eb932;
+	color: #69b945;
+	background: #fff;
+	height: 23px;
+	margin: 10px 0 0;
+}
+
+button.null_options {
+	padding: 0 7px;
+	border: 1px solid #b92a06;
+	color: #b91717;
+	background: #fff;
+	height: 23px;
+	margin: 10px 0 0;
+}
+.single-option {width: 100% !important;}
+

@@ -1,0 +1,32 @@
+{
+  "name": "Cutting/Cutting-plugin",
+  "description": "Cutting plug-in ",
+  "version": "0.5.0",
+  "license": "proprietary",
+  "type": "youngcart-plugin",
+  "authors": [
+    {
+      "name": "CodeDodam",
+      "email": "codedodam@gmail.com"
+    }
+  ],
+  "keywords": [
+    "CodeDodam",
+    "youngcart",
+    "plugin",
+    "examination"
+  ],
+  "require": {
+  },
+  "autoload": {
+    "classmap": [
+      "includes"
+    ],
+    "files": [
+      "includes/Libs/Utils.php",
+      "includes/Libs/Defines.php",
+      "includes/Libs/Functions.php",
+      "includes/Libs/ShopFunctions.php"
+    ]
+  }
+}
