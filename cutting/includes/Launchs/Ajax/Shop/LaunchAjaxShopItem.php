@@ -37,7 +37,7 @@ class LaunchAjaxShopItem
 
 			$this->shopAjaxItem = new SupplyAjaxShopItem();
 
-			addAction( _DODAM_AJAX_ . $action, array($this->shopAjaxItem, $action) );
+			addAction( _DODAM_CUTTING_AJAX_ . $action, array($this->shopAjaxItem, $action) );
 		}
 	}
 }
