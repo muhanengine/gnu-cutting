@@ -35,7 +35,7 @@
                     tmpLength = parseInt( $(this).val() );
 
                     if ( ! $.isNumeric( $(this).val() ) || tmpLength < it_min_height || tmpLength > it_max_height ) {
-                        message.push( "재단길이(세로) 최소, 최대 길이을 확인 하세요." );
+                        message.push( "재단(세로) 최소, 최대 길이을 확인 하세요." );
                     }
                 });
             }
@@ -45,7 +45,7 @@
                     tmpLength = parseInt( $(this).val() );
 
                     if ( ! $.isNumeric( $(this).val() ) || tmpLength < it_min_width || tmpLength > it_max_width ) {
-                        message.push( "재단길이(가로) 최소, 최대 길이을 확인 하세요." );
+                        message.push( "재단(가로) 최소, 최대 길이을 확인 하세요." );
                     }
                 });
             }
@@ -197,7 +197,7 @@
 	    $(".add-cutting").on("click", function() {
 	    	var copyProt = $(".fields-cutting:eq(0)").clone();
 	        var copyRow  = copyProt.find(".delete-cutting").attr("cutting");
-	        var rowTotal = $(".shop_table tr").length;
+	        // var rowTotal = $(".shop_table tr").length;
 
 	        count++;
 
@@ -584,7 +584,10 @@
 					w_height = parseInt( array_height[cnt] );
 					w_width  = parseInt( array_width[cnt] );
 					w_cut    = parseInt( array_cut[cnt] );
-					tot_amount += getCeil( parseInt( w_height * w_width * (unit_amount + price) ) / ( it_sale_unit * it_sale_unit ) ) * w_cut;
+
+					var w_unit_price = getCeil( parseInt( w_height * w_width * (unit_amount + price) ) / ( it_sale_unit * it_sale_unit ) );
+					$(this).closest("tr").find(".unit_price").val( w_unit_price );
+					tot_amount += w_unit_price * w_cut;
 
 					cnt++;
 				});
@@ -672,7 +675,11 @@
 
 					w_width    = parseInt( array_width[cnt] );
 					w_cut      = parseInt( array_cut[cnt] );
-					tot_amount += getCeil( Math.ceil( parseInt( w_width * (unit_amount + price) ) / it_sale_unit ) ) * w_cut;
+
+                    var w_unit_price = getCeil( Math.ceil( parseInt( w_width * (unit_amount + price) ) / it_sale_unit ) );
+                    $(this).closest("tr").find(".unit_price").val( w_unit_price );
+
+					tot_amount += w_unit_price * w_cut;
 
 					cnt++;
 				});

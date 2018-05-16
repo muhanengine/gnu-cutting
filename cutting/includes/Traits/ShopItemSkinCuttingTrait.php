@@ -70,14 +70,18 @@ trait ShopItemSkinCuttingTrait
                                 <th class="product-name add-cutting">+</th>
                             </tr>
                             <tr class="cart-subtotal fields-cutting">
-                                <td><input type="number" class="cutting cutting_width" name="cutting_width[]" value=""
-                                           title=""/></td>
-                                <td><input type="number" class="cutting cutting_count" name="cutting_count[]" value=""
-                                           title=""/>
+                                <td>
+                                    <input type="number" class="cutting cutting_width" name="cutting_width[]" value="" title=""/>
+                                    <input type="hidden" class="unit_price" name="unit_price[]" value="" title=""/>
                                 </td>
-                                <td><input type="text" class="cutting cutting_amount" name="cutting_amount[]" value=""
-                                           title=""/></td>
-                                <td><span class="delete-cutting" cutting="<?php echo $no; ?>">X</span></td>
+                                <td>
+                                    <input type="number" class="cutting cutting_count" name="cutting_count[]" value="" title=""/>
+                                </td>
+                                <td>
+                                    <input type="text" class="cutting cutting_amount" name="cutting_amount[]" value="" title=""/>
+                                <td>
+                                    <span class="delete-cutting" cutting="<?php echo $no; ?>">X</span>
+                                </td>
                             </tr>
 							<?php
 							break;
@@ -87,24 +91,28 @@ trait ShopItemSkinCuttingTrait
                             <!-- 판재 -->
                             <input type="hidden" name="it_cutting_total_price" value=""/>
                             <tr>
-                                <th class="product-name">재단길이(가로)</th>
-                                <th class="product-name">재단길이(세로)</th>
+                                <th class="product-name">재단(가로)</th>
+                                <th class="product-name">재단(세로)</th>
                                 <th class="product-name">수량</th>
                                 <th class="product-name">재단비</th>
                                 <th class="product-name add-cutting">+</th>
                             </tr>
                             <tr class="cart-subtotal fields-cutting board">
-                                <td><input type="number" class="cutting cutting_width" name="cutting_width[]" value=""
-                                           title=""/>
+                                <td>
+                                    <input type="number" class="cutting cutting_width" name="cutting_width[]" value="" title=""/>
+                                    <input type="hidden" class="unit_price" name="unit_price[]" value="" title=""/>
                                 </td>
-                                <td><input type="number" class="cutting cutting_height" name="cutting_height[]" value=""
-                                           title=""/></td>
-                                <td><input type="number" class="cutting cutting_count" name="cutting_count[]" value=""
-                                           title=""/>
+                                <td>
+                                    <input type="number" class="cutting cutting_height" name="cutting_height[]" value="" title=""/></td>
+                                <td>
+                                    <input type="number" class="cutting cutting_count" name="cutting_count[]" value="" title=""/>
                                 </td>
-                                <td><input type="text" class="cutting cutting_amount" name="cutting_amount[]" value=""
-                                           title=""/></td>
-                                <td><span class="delete-cutting" cutting="<?php echo $no; ?>">X</span></td>
+                                <td>
+                                    <input type="text" class="cutting cutting_amount" name="cutting_amount[]" value="" title=""/>
+                                </td>
+                                <td>
+                                    <span class="delete-cutting" cutting="<?php echo $no; ?>">X</span>
+                                </td>
                             </tr>
 							<?php
 							break;
@@ -120,14 +128,18 @@ trait ShopItemSkinCuttingTrait
                                 <th class="product-name add-cutting">+</th>
                             </tr>
                             <tr class="cart-subtotal fields-cutting">
-                                <td><input type="number" class="cutting cutting_width" name="cutting_width[]" value=""
-                                           title=""/></td>
-                                <td><input type="number" class="cutting cutting_count" name="cutting_count[]" value=""
-                                           title=""/>
+                                <td>
+                                    <input type="number" class="cutting cutting_width" name="cutting_width[]" value="" title=""/>
                                 </td>
-                                <td><input type="text" class="cutting cutting_amount" name="cutting_amount[]" value=""
-                                           title=""/></td>
-                                <td><span class="delete-cutting" cutting="<?php echo $no; ?>">X</span></td>
+                                <td>
+                                    <input type="number" class="cutting cutting_count" name="cutting_count[]" value="" title=""/>
+                                </td>
+                                <td>
+                                    <input type="text" class="cutting cutting_amount" name="cutting_amount[]" value="" title=""/>
+                                </td>
+                                <td>
+                                    <span class="delete-cutting" cutting="<?php echo $no; ?>">X</span>
+                                </td>
                             </tr>
 
 							<?php
@@ -163,6 +175,7 @@ trait ShopItemSkinCuttingTrait
                     <div class="sit_opt_price"></div>
                     <div class="sit_opt_qty">&nbsp;&nbsp;수량: <input type="text" name="cutting_qty" value="0" class="cutting_qty frm_input frm_stock" size="5" readonly></div>
                     <div class="btn_add01">
+                        <a href="javascript:;" class="add-cutting">재단 추가하기</a>
                         <a href="javascript:;" class="button-cutting">재단 저장하기</a>
                     </div>
                 </div>';

@@ -404,9 +404,10 @@ trait CuttingTrait
 		$itemId = (int) $itemIds[0];
 
 		$cuttingWidth  = _Isset( 'cutting_width', $request );
-		$cuttingHeight = _Isset( 'cutting_height', $request );
-		$cuttingCount  = _Isset( 'cutting_count', $request );
+		$cuttingHeight = _Isset( 'cutting_height', $request ); /** @var array $cuttingHeight */
+		$cuttingCount  = _Isset( 'cutting_count', $request ); /** @var array $cuttingCount */
 		$cuttingAmount = _Isset( 'cutting_amount', $request );
+		$unit_price    = _Isset( 'unit_price', $request );
 
 		$cuttingQty = _Isset( 'cutting_qty', $request, 'sql_real_escape_string' );
 		$cutJatturi = _Isset( 'cut_jatturi', $request, 'sql_real_escape_string' );
@@ -420,10 +421,10 @@ trait CuttingTrait
 			$itemTotalPrice = $itemSaleAmount;
 		}
 
-		$cutting_list = $this->getCuttingList( $itemCutOption, $cuttingWidth, $cuttingHeight, $cuttingCount, $cuttingAmount );
+		$cuttingList = $this->getCuttingList( $itemCutOption, $cuttingWidth, $cuttingHeight, $cuttingCount, $cuttingAmount, $unit_price );
 
 		$queryCommon = "
-		cutting_list        = '{$cutting_list}', 
+		cutting_list        = '{$cuttingList}', 
 		cutting_option      = '{$cutOption}', 
 		cutting_qty         = '{$cuttingQty}', 
 		cutting_jatturi     = '{$cutJatturi}', 
@@ -497,9 +498,10 @@ trait CuttingTrait
 		$itemId    = sql_real_escape_string( $itemIds[0] );
 
 		$cuttingWidth  = _Isset( 'cutting_width', $request );
-		$cuttingHeight = _Isset( 'cutting_height', $request );
-		$cuttingCount  = _Isset( 'cutting_count', $request );
+		$cuttingHeight = _Isset( 'cutting_height', $request ); /** @var array $cuttingHeight */
+		$cuttingCount  = _Isset( 'cutting_count', $request ); /** @var array $cuttingCount */
 		$cuttingAmount = _Isset( 'cutting_amount', $request );
+		$unit_price    = _Isset( 'unit_price', $request );
 
 		$cuttingQty = _Isset( 'cutting_qty', $request, 'sql_real_escape_string' );
 		$cutJatturi = _Isset( 'cut_jatturi', $request, 'sql_real_escape_string' );
@@ -513,7 +515,7 @@ trait CuttingTrait
 			$itemTotalPrice = $itemSaleAmount;
 		}
 
-		$cutting_list = $this->getCuttingList( $itemCutOpt, $cuttingWidth, $cuttingHeight, $cuttingCount, $cuttingAmount );
+		$cutting_list = $this->getCuttingList( $itemCutOpt, $cuttingWidth, $cuttingHeight, $cuttingCount, $cuttingAmount, $unit_price );
 
 		$queryCommon = "
 		ct_id               = '{$cartId}', 
@@ -575,54 +577,68 @@ trait CuttingTrait
 	/**
 	 * 재단정보
 	 *
-	 * @param $itemCutOpt
+	 * @param int $itemCutOpt
 	 * @param $cuttingWidth
-	 * @param $cuttingHeight
-	 * @param $cuttingCount
-	 * @param $cuttingAmount
+	 * @param array $cuttingHeight
+	 * @param array $cuttingCount
+	 * @param array $cuttingAmount
+	 * @param array $unitPrice
 	 *
 	 * @return array
 	 */
-	public function getCuttingList( $itemCutOpt, &$cuttingWidth, &$cuttingHeight, &$cuttingCount, &$cuttingAmount )
+	public function getCuttingList(
+		$itemCutOpt,
+		&$cuttingWidth,
+		&$cuttingHeight = array(),
+		&$cuttingCount,
+		&$cuttingAmount,
+		&$unitPrice = array()
+	)
 	{
 		$cuttingList = array(); //재단 정보
 
 		switch ( $itemCutOpt ) {
 			case "1":
-				array_push( $cuttingList, array( '재단길이', '수량', '직각재단비' ) );
+				array_push( $cuttingList, array( '재단길이', '단가', '수량', '재단비', '소계' ) );
 
 				for ( $c = 0; $c < count( $cuttingWidth ); $c ++ ) {
+					$subTotal = $unitPrice[ $c ] * $cuttingCount[ $c ] + $cuttingAmount[ $c ];
 					$addArray = array(
-						'cutting_width'  => sql_real_escape_string( $cuttingWidth[ $c ] ),
-						'cutting_count'  => sql_real_escape_string( $cuttingCount[ $c ] ),
-						'cutting_amount' => sql_real_escape_string( $cuttingAmount[ $c ] )
+						'cutting_width'  => sql_real_escape_string( number_format($cuttingWidth[ $c ]) ),
+						'unit_price'     => sql_real_escape_string( number_format($unitPrice[ $c ]) ),
+						'cutting_count'  => sql_real_escape_string( number_format($cuttingCount[ $c ]) ),
+						'cutting_amount' => sql_real_escape_string( number_format($cuttingAmount[ $c ]) ),
+						'sub_total'      => sql_real_escape_string( number_format($subTotal) )
 					);
 					array_push( $cuttingList, $addArray );
 				}
 				break;
 
 			case "2";
-				array_push( $cuttingList, array( '재단길이(가로)', '재단길이(세로)', '수량', '직각재단비' ) );
+				array_push( $cuttingList, array( '재단(가로)', '재단(세로)', '단가', '수량', '재단비', '소계' ) );
 
 				for ( $c = 0; $c < count( $cuttingHeight ); $c ++ ) {
+					$subTotal = $unitPrice[ $c ] * $cuttingCount[ $c ] + $cuttingAmount[ $c ];
 					$addArray = array(
-						'cutting_width'  => sql_real_escape_string( $cuttingWidth[ $c ] ),
-						'cutting_height' => sql_real_escape_string( $cuttingHeight[ $c ] ),
-						'cutting_count'  => sql_real_escape_string( $cuttingCount[ $c ] ),
-						'cutting_amount' => sql_real_escape_string( $cuttingAmount[ $c ] )
+						'cutting_width'  => sql_real_escape_string( number_format($cuttingWidth[ $c ]) ),
+						'cutting_height' => sql_real_escape_string( number_format($cuttingHeight[ $c ]) ),
+						'unit_price'     => sql_real_escape_string( number_format($unitPrice[ $c ]) ),
+						'cutting_count'  => sql_real_escape_string( number_format($cuttingCount[ $c ]) ),
+						'cutting_amount' => sql_real_escape_string( number_format($cuttingAmount[ $c ]) ),
+						'sub_total'      => sql_real_escape_string( number_format($subTotal) )
 					);
 					array_push( $cuttingList, $addArray );
 				}
 				break;
 
 			case "3";
-				array_push( $cuttingList, array( '재단길이', '수량', '직각재단비' ) );
+				array_push( $cuttingList, array( '재단길이', '수량', '재단비' ) );
 
 				for ( $c = 0; $c < count( $cuttingWidth ); $c ++ ) {
 					$addArray = array(
-						'cutting_width'  => sql_real_escape_string( $cuttingWidth[ $c ] ),
-						'cutting_count'  => sql_real_escape_string( $cuttingCount[ $c ] ),
-						'cutting_amount' => sql_real_escape_string( $cuttingAmount[ $c ] )
+						'cutting_width'  => sql_real_escape_string( number_format($cuttingWidth[ $c ]) ),
+						'cutting_count'  => sql_real_escape_string( number_format($cuttingCount[ $c ]) ),
+						'cutting_amount' => sql_real_escape_string( number_format($cuttingAmount[ $c ]) )
 					);
 					array_push( $cuttingList, $addArray );
 				}

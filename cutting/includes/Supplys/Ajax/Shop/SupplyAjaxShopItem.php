@@ -173,9 +173,29 @@ class SupplyAjaxShopItem
 
 					<span><?=$cutting['cutting_jatturi']?></span>
 					<div>
-                        <span><?=number_format( ( $cutting['cutting_total_price'] + $cutting['cutting_opt_price'] ) * $cutting['cutting_qty'] + $cutting['cutting_price'] )?>원
-                            <?php if ( $item['it_cut_opt'] == '1' || $item['it_cut_opt'] == '2' ) { ?>
+                        <span>
+                            <?php
+                            $totalPrice = ( $cutting['cutting_total_price'] + $cutting['cutting_opt_price'] ) * $cutting['cutting_qty'] + $cutting['cutting_price'];
+
+                            if ( $item['it_cut_opt'] == '1' || $item['it_cut_opt'] == '2' ) { ?>
+                                <span class="small-description">(합계금액)</span>
+                                <span class="cutting-sub-price"><?=number_format( $totalPrice )?></span>원
                                 <input type="hidden" name="ct_qty[<?=$itemId?>][]" value="1" alt="수량">
+                            <?php } else if ( $item['it_cut_opt'] == '3' ) { // 자투리 상품?>
+	                            <?php
+	                            if( $cutting['cutting_total_price'] && $cutting['cutting_opt_price'] ) {
+		                            echo '('. number_format( $cutting['cutting_total_price'] ) .'<span class="small-description">(상품금액)</span>  + '.
+		                                 number_format( $cutting['cutting_opt_price'] ) .'<span class="small-description">(옵션비용)</span> )';
+	                            } else if( $cutting['cutting_total_price'] ) {
+		                            echo number_format( $cutting['cutting_total_price'] ) .'<span class="small-description">(상품금액)</span>';
+	                            }
+	                            ?>
+	                            <?=' * '. number_format( $cutting['cutting_qty'] )?><span class="small-description">(수량)</span>
+	                            <?=' + '. number_format( $cutting['cutting_price'] )?><span class="small-description">(재단비용)</span>
+                                <br />
+                                <span class="small-description">(합계금액)</span>
+                                <span class="cutting-sub-price"><?=number_format( $totalPrice )?></span>원
+                                <input type="hidden" name="ct_qty[<?=$itemId?>][]" value="<?=$cutting['cutting_qty']?>" alt="수량">
                             <?php } else { ?>
                                 &nbsp;&nbsp;수량: <input type="text" name="ct_qty[<?=$itemId?>][]" value="<?=$cutting['cutting_qty']?>" class="frm_stock input_readonly" size="1" title="" readonly>
                             <?php } ?>
