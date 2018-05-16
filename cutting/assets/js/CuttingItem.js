@@ -221,7 +221,7 @@
 	    		return false;
 	    	}
 
-	    	$(".tb_cut_cutting").find("tr.cutting"+trClick).fadeOut("fast", function(){
+	    	$(this).closest("tr.fields-cutting").fadeOut("fast", function(){
 	    		$(this).remove();
 
 		    	rowTotal = $(".tb_cut_cutting tr").length;
