@@ -206,7 +206,7 @@ trait CuttingTrait
 	}
 
 	/**
-	 * 재단 정보 출력 (미사용:삭제가능)
+	 * 재단 정보 출력
 	 *
 	 * @param $cartId
 	 * @param string $itemId 상품번호

@@ -244,7 +244,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
         <!-- } 선택옵션 끝 -->
         <?php
         }
-        $is_orderable = Cutting\Libs\Functions\doAction( 'item_form_add_cutting_skin', array( $it, $option_item) );
+        $is_orderable = Cutting\Libs\Functions\doAction( 'item_form_add_cutting_skin', array( $it, $option_item ) );
         ?>
 
         <?php

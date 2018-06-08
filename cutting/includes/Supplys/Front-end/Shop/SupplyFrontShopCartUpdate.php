@@ -38,7 +38,7 @@ class SupplyFrontShopCartUpdate
 			sql_query( $query );
 		}
 
-		return ' , ct_cutmemo, ct_cutting_use, ct_cut_price ';
+		return ' , ct_cutting_use, ct_cut_price ';
 	}
 
 	/**
@@ -100,7 +100,6 @@ class SupplyFrontShopCartUpdate
 	 */
 	public function updateCartInsertValues( &$it, $it_id, $tmp_cart_id )
 	{
-		$cutMemo  = postIsset( 'ct_cutmemo', 'htmlentities' );
 		$cutUse   = postIsset( 'ct_cutting_use', 'intval', 0 );
 
 		/** @var array $cartPrice */
@@ -112,7 +111,7 @@ class SupplyFrontShopCartUpdate
 			$cutUse = 1;
 		}
 
-		return ", '{$cutMemo}', '{$cutUse}', '{$cutPrice}' ";
+		return ", '{$cutUse}', '{$cutPrice}' ";
 	}
 
 	/**
