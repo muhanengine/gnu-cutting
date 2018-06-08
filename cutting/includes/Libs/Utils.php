@@ -60,7 +60,7 @@ function _isset( $key, &$request, $callback = '', $default = '' )
 	}
 
 	if ( ! is_null($variable) ) {
-		return getFuncVar( $variable, $callback, $default );
+		return getFuncVar( $variable, $callback );
 	} else {
 		return $default;
 	}
@@ -70,20 +70,15 @@ function _isset( $key, &$request, $callback = '', $default = '' )
  * Call the callback given by the first parameter
  * @param string $variable parameter
  * @param string $callback callback
- * @param string $default
  * @return string
  */
-function getFuncVar( $variable, $callback = '', $default = '' )
+function getFuncVar( $variable, $callback = '' )
 {
 	if ( is_callable( $callback ) ) {
 		$variable = call_user_func( $callback, $variable );
 	}
 
-	if ( empty($variable) || is_null($variable) ) {
-		return $default;
-	} else {
-		return $variable;
-	}
+	return $variable;
 }
 
 /**
