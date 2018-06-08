@@ -124,10 +124,11 @@ function includeCssJs( $filePath, $version = '' )
  *
  * @param string $keyName
  * @param mixed $addFunction
+ * @param int $priority
  *
  * @return bool
  */
-function addAction( $keyName = '', $addFunction = '' )
+function addAction( $keyName = '', $addFunction = '', $priority = 10 )
 {
 	static $includeList;
 
@@ -137,7 +138,7 @@ function addAction( $keyName = '', $addFunction = '' )
 		return $includeList;
 	}
 
-	$includeList[ $keyName ][] = $addFunction;
+	$includeList[ $keyName ][ $priority ][] = $addFunction;
 
 	return true;
 }
@@ -146,29 +147,38 @@ function addAction( $keyName = '', $addFunction = '' )
  * 훅 실행하기
  *
  * @param string $keyName
- * @param array $args
+ * @param array $args Parameter
+ * @param bool $filter
  *
  * @return mixed
  */
-function doAction( $keyName, $args = array() )
+function doAction( $keyName, $args = array(), $filter = false )
 {
 	/** @var $includeList */
 	$includeList = getActions();
 
 	$keyName = trim( $keyName );
-	//$keyName = basename( $keyName );
+	$valAction = null;
 
 	if ( isset( $includeList[ $keyName ] ) ) {
-		foreach ( $includeList[ $keyName ] as $key=>$function ) {
-			if ( is_callable($function) || function_exists($function) ) {
-				return call_user_func_array( $function, $args );
+		ksort( $includeList[ $keyName ] );
+
+		foreach ( $includeList[ $keyName ] as $actions ) {
+			foreach ( $actions as $key => $function ) {
+				if ( is_callable( $function ) || function_exists( $function ) ) {
+					$valAction .= call_user_func_array( $function, $args );
+				}
 			}
 		}
 
 		unset( $includeList[ $keyName ] );
 	}
 
-	return null;
+	if ( true === $filter && is_null($valAction)) {
+		return $args[0];
+	} else {
+		return $valAction;
+	}
 }
 
 /**
